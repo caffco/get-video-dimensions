@@ -13,6 +13,7 @@ module.exports = function ( filename ) {
 		var width = /width=(\d+)/.exec( stdout );
 		var height = /height=(\d+)/.exec( stdout );
 		assert( width && height, 'No dimensions found!' );
+		var codec = /codec_name=\"(\w+)\"/.exec( stdout );
 		var rotate = /tags_rotate=\"(\d+)\"/.exec( stdout );
 		if ( rotate !== undefined ) {
 			rotate = parseInt( rotate[ 1 ] );
@@ -20,12 +21,14 @@ module.exports = function ( filename ) {
 				return {
 					width: parseInt( height[ 1 ] ),
 					height: parseInt( width[ 1 ] ),
+					codec: codec[ 1 ]
 				};
 			}
 		}
 		return {
 			width: parseInt( width[ 1 ] ),
 			height: parseInt( height[ 1 ] ),
+			codec: codec[ 1 ]
 		};
 	} );
 };
