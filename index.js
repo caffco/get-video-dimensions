@@ -15,7 +15,7 @@ module.exports = function ( filename ) {
 		assert( width && height, 'No dimensions found!' );
 		var codec = /codec_name=\"(\w+)\"/.exec( stdout );
 		var rotate = /tags_rotate=\"(\d+)\"/.exec( stdout );
-		if ( rotate !== undefined ) {
+		if ( rotate ) {
 			rotate = parseInt( rotate[ 1 ] );
 			if ( rotate === 90 || rotate === -90 ) {
 				return {
